@@ -1,6 +1,7 @@
 package com.trio.Trio_Shopping_Backend.Controller;
 
 import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
+import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import com.trio.Trio_Shopping_Backend.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class EmailController {
 
     // Sending a simple Email
     @PostMapping("/sendMail")
-    public boolean sendMail(@PathVariable String emailId)
+    public OtpVO sendMail(@PathVariable String emailId)
     {
         return emailService.sendSimpleMail(emailId);
     }
