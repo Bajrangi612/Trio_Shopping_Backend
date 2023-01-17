@@ -28,18 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public ResponseEntity<?> updateUserDetails(UserDetails userDetails) {
-        Long mob = userDetails.getMobileNumber();
-        if(mob!=null) {
-            UserDetails userDetails1 = userDetailsRepository.findByMobileNumber(userDetails.getMobileNumber());
-            if (userDetails1 != null) {
-                return ResponseDomain.badRequest("Mobile number already exist..");
-            } else {
                 userDetailsRepository.save(userDetails);
                 return ResponseDomain.putResponse("Account updated successfully..");
-
-            }
-        }
-        return  null;
     }
 
     @Override
