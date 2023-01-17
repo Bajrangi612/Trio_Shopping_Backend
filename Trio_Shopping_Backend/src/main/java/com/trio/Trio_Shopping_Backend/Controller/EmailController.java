@@ -13,7 +13,7 @@ public class EmailController {
     private EmailService emailService;
 
     // Sending a simple Email
-    @PostMapping("/sendMail")
+    @PostMapping("/sendMail/{emailId}")
     public OtpVO sendMail(@PathVariable String emailId)
     {
         return emailService.sendSimpleMail(emailId);
