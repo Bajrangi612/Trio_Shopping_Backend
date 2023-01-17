@@ -2,12 +2,16 @@ package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
 
+import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
+import java.util.Random;
 
+@Service
 public class EmailServiceImpl implements EmailService{
     @Autowired
     private JavaMailSender javaMailSender;
@@ -17,9 +21,9 @@ public class EmailServiceImpl implements EmailService{
     // Method 1
     // To send a simple email
     @Override
-    public boolean sendSimpleMail(EmailDetails details)
+    public OtpVO sendSimpleMail(String mailId)
     {
-
+        OtpVO otpVO = new OtpVO();
         // Try block to check for exceptions
         try {
 
@@ -27,23 +31,29 @@ public class EmailServiceImpl implements EmailService{
             SimpleMailMessage mailMessage
                     = new SimpleMailMessage();
 
+
+            // Generation OTP
+            int sentOTP = new Random().nextInt(900000) + 100000;
+            otpVO.setSentOTP(sentOTP);
+
             // Setting up necessary details
             mailMessage.setFrom(sender);
-            mailMessage.setTo(details.getRecipient());
-            mailMessage.setText(details.getMsgBody());
-            mailMessage.setSubject(details.getSubject());
+            mailMessage.setTo(mailId);
+            mailMessage.setText("Hii dear, your OTP is "+sentOTP);
+            mailMessage.setSubject("Trio-Shopping Verification Code");
 
             // Sending the mail
             javaMailSender.send(mailMessage);
             System.out.println("Mail Sent Successfully...");
-            return true;
+            otpVO.setMailSent(true);
         }
 
         // Catch block to handle the exceptions
         catch (Exception e) {
             System.out.println("Error while Sending Mail");
-            return false;
+            otpVO.setMailSent(false);
         }
+        return otpVO;
     }
 //    @Override
 //    public String sendMailWithAttachment(EmailDetails details)

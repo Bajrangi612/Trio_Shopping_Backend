@@ -1,9 +1,10 @@
 package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
+import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 
 public interface EmailService {
-    boolean sendSimpleMail(EmailDetails details);
+    OtpVO sendSimpleMail(String mailId);
 
     // Method
     // To send an email with attachment
