@@ -5,6 +5,8 @@ import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
 import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ public class EmailServiceImpl implements EmailService{
     // Method 1
     // To send a simple email
     @Override
-    public OtpVO sendSimpleMail(String mailId)
+    public ResponseEntity<?> sendSimpleMail(String mailId)
     {
         OtpVO otpVO = new OtpVO();
         // Try block to check for exceptions
@@ -53,7 +55,7 @@ public class EmailServiceImpl implements EmailService{
             System.out.println("Error while Sending Mail");
             otpVO.setMailSent(false);
         }
-        return otpVO;
+        return  new ResponseEntity<>(otpVO, HttpStatus.OK);
     }
 //    @Override
 //    public String sendMailWithAttachment(EmailDetails details)
