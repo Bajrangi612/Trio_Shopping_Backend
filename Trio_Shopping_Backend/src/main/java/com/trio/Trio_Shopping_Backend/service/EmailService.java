@@ -5,7 +5,7 @@ import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import org.springframework.http.ResponseEntity;
 
 public interface EmailService {
-    ResponseEntity<?> sendSimpleMail(String mailId);
+    ResponseEntity<?> sendSimpleMail(OtpVO otpVO);
 
     // Method
     // To send an email with attachment

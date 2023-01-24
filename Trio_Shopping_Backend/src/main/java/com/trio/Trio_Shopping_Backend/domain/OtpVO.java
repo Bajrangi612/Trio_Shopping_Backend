@@ -6,4 +6,6 @@ import lombok.Data;
 public class OtpVO {
    private int sentOTP;
     private boolean isMailSent;
+    private String userName;
+    private String emailId;
 }

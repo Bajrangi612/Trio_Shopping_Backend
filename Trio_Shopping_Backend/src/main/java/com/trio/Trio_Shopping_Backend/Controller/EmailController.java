@@ -14,9 +14,9 @@ public class EmailController {
     private EmailService emailService;
 
     // Sending a simple Email
-    @PostMapping("/sendMail/{emailId}")
-    public ResponseEntity<?> sendMail(@PathVariable String emailId)
+    @PostMapping("/sendMail")
+    public ResponseEntity<?> sendMail(@RequestBody OtpVO otpVO)
     {
-        return emailService.sendSimpleMail(emailId);
+        return emailService.sendSimpleMail(otpVO);
     }
 }

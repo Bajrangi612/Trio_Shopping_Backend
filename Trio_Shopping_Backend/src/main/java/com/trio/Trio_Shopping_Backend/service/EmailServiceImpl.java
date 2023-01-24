@@ -23,9 +23,9 @@ public class EmailServiceImpl implements EmailService{
     // Method 1
     // To send a simple email
     @Override
-    public ResponseEntity<?> sendSimpleMail(String mailId)
+    public ResponseEntity<?> sendSimpleMail(OtpVO otpVO)
     {
-        OtpVO otpVO = new OtpVO();
+
         // Try block to check for exceptions
         try {
 
@@ -40,8 +40,8 @@ public class EmailServiceImpl implements EmailService{
 
             // Setting up necessary details
             mailMessage.setFrom(sender);
-            mailMessage.setTo(mailId);
-            mailMessage.setText("Hii dear, your OTP is "+sentOTP);
+            mailMessage.setTo(otpVO.getEmailId());
+            mailMessage.setText("Hii "+otpVO.getUserName()+", your OTP is "+sentOTP);
             mailMessage.setSubject("Trio-Shopping Verification Code");
 
             // Sending the mail
