@@ -6,7 +6,7 @@ import com.trio.Trio_Shopping_Backend.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/email")
 public class EmailController {
