@@ -96,7 +96,9 @@ public class EmailServiceImpl implements EmailService {
             }
 
             JSONObject jsonObject = new JSONObject(response.toString());
+            if(jsonObject.getBoolean("return"))
            otpVO.setMessage(jsonObject.getJSONArray("message").get(0).toString());
+            else otpVO.setMessage(jsonObject.getString("message"));
            otpVO.setOtpSend(jsonObject.getBoolean("return"));
            otpVO.setEmailIdOrMobileNumber(mobileNumber);
 
