@@ -3,6 +3,7 @@ package com.trio.Trio_Shopping_Backend.service;
 import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
 
 import com.trio.Trio_Shopping_Backend.domain.OtpVO;
+import com.trio.Trio_Shopping_Backend.responce.ResponseDomain;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -101,13 +102,16 @@ public class EmailServiceImpl implements EmailService {
             else otpVO.setMessage(jsonObject.getString("message"));
            otpVO.setOtpSend(jsonObject.getBoolean("return"));
            otpVO.setEmailIdOrMobileNumber(mobileNumber);
+           if(!jsonObject.getBoolean("return")){
+              return ResponseDomain.badRequest(otpVO.getMessage()+"-"+otpVO.isOtpSend());
+           }
 
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             otpVO.setMessage("OTP Sending Fail");
             otpVO.setOtpSend(false);
-            return  new ResponseEntity<>(otpVO, HttpStatus.BAD_REQUEST);
+            return ResponseDomain.badRequest(otpVO.getMessage()+"-"+otpVO.isOtpSend());
         }
 
 
