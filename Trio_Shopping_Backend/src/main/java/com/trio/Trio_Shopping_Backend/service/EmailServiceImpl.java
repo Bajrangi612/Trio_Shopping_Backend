@@ -107,6 +107,7 @@ public class EmailServiceImpl implements EmailService {
             System.out.println(e.getMessage());
             otpVO.setMessage("OTP Sending Fail");
             otpVO.setOtpSend(false);
+            return  new ResponseEntity<>(otpVO, HttpStatus.BAD_REQUEST);
         }
 
 
