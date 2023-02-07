@@ -103,7 +103,7 @@ public class EmailServiceImpl implements EmailService {
            otpVO.setOtpSend(jsonObject.getBoolean("return"));
            otpVO.setEmailIdOrMobileNumber(mobileNumber);
            if(!jsonObject.getBoolean("return")){
-              return ResponseDomain.badRequest(otpVO.getMessage()+"-"+otpVO.isOtpSend());
+              return ResponseDomain.badRequest("Please enter valid Email ID/Mobile number");
            }
 
 
@@ -111,7 +111,7 @@ public class EmailServiceImpl implements EmailService {
             System.out.println(e.getMessage());
             otpVO.setMessage("OTP Sending Fail");
             otpVO.setOtpSend(false);
-            return ResponseDomain.badRequest(otpVO.getMessage()+"-"+otpVO.isOtpSend());
+            return ResponseDomain.badRequest("Please enter valid Email ID/Mobile number");
         }
 
 
