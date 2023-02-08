@@ -14,13 +14,9 @@ public class UserDetails implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String userName;
     private String userEmail;
-    private String password;
-    private long mobileNumber;
-
-    private String profilePic;
-
+    private String userMobileNumber;
+    private String userFullName;
 
 
 }

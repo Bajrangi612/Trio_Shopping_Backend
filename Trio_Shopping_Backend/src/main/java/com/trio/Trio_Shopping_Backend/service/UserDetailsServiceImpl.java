@@ -14,17 +14,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDetailsRepository userDetailsRepository;
 
-    @Override
-    public ResponseEntity<?> createUser(UserDetails userDetails) {
-      UserDetails userDetails1 =   userDetailsRepository.findByMobileNumber(userDetails.getMobileNumber());
-      if(userDetails1!= null)
-      {
-          return ResponseDomain.badRequest("Mobile number already exist..");
-      }else {
-          userDetailsRepository.save(userDetails);
-      }
-        return ResponseDomain.successResponse("Account created successfully..");
-    }
+//    @Override
+//    public ResponseEntity<?> createUser(UserDetails userDetails) {
+//      UserDetails userDetails1 =   userDetailsRepository.findByMobileNumber(userDetails);
+//      if(userDetails1!= null)
+//      {
+//          return ResponseDomain.badRequest("Mobile number already exist..");
+//      }else {
+//          userDetailsRepository.save(userDetails);
+//      }
+//        return ResponseDomain.successResponse("Account created successfully..");
+//    }
 
     @Override
     public ResponseEntity<?> updateUserDetails(UserDetails userDetails) {

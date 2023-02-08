@@ -8,6 +8,7 @@ public class OtpVO {
     private boolean isOtpSend;
     private String emailIdOrMobileNumber;
     private String message;
+    private boolean isAccountRegistered = true;
 
 
 }

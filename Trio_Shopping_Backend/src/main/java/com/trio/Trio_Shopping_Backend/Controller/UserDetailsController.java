@@ -16,7 +16,7 @@ public class UserDetailsController {
     @PostMapping("/createUser")
     ResponseEntity<?> creteUser(@RequestBody UserDetails userDetails)
     {
-        return userDetailsService.createUser(userDetails);
+        return null;
     }
     @PutMapping("/updateUser")
     ResponseEntity<?> updateUserDetails(@RequestBody UserDetails userDetails)
