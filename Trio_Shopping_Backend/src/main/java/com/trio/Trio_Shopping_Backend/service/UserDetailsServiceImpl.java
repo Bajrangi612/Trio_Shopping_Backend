@@ -14,33 +14,29 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDetailsRepository userDetailsRepository;
 
-//    @Override
-//    public ResponseEntity<?> createUser(UserDetails userDetails) {
-//      UserDetails userDetails1 =   userDetailsRepository.findByMobileNumber(userDetails);
-//      if(userDetails1!= null)
-//      {
-//          return ResponseDomain.badRequest("Mobile number already exist..");
-//      }else {
-//          userDetailsRepository.save(userDetails);
-//      }
-//        return ResponseDomain.successResponse("Account created successfully..");
-//    }
+    @Override
+    public ResponseEntity<?> createUser(UserDetails userDetails) {
+        if (userDetails.getUserEmail() != null || userDetails.getUserMobileNumber() != null) {
+            userDetailsRepository.save(userDetails);
+            return ResponseDomain.successResponse("Account created successfully...");
+        } else return ResponseDomain.badRequest("Please give valid Email/Mobile number..");
+    }
 
     @Override
     public ResponseEntity<?> updateUserDetails(UserDetails userDetails) {
-                userDetailsRepository.save(userDetails);
-                return ResponseDomain.putResponse("Account updated successfully..");
+        userDetailsRepository.save(userDetails);
+        return ResponseDomain.putResponse("Account updated successfully..");
     }
 
     @Override
     public Optional<UserDetails> getUserDetails(long id) {
-       Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
+        Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
         return userDetails;
     }
 
     @Override
     public ResponseEntity<?> deleteAccount(UserDetails userDetails) {
-        long id= userDetails.getId();
+        long id = userDetails.getId();
         userDetailsRepository.deleteById(id);
         return ResponseDomain.deleteResponse("Account updated successfully..");
     }

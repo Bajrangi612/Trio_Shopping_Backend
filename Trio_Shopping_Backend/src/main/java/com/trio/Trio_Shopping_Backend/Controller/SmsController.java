@@ -35,6 +35,8 @@ public class SmsController {
                 otpVO.setEmailIdOrMobileNumber(data);
                 otpVO.setAccountRegistered(false);
                 return new ResponseEntity<>(otpVO, HttpStatus.OK);
+            }else{
+                return emailService.sendOtpOnMail(data);
             }
         }else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")){
             UserDetails userDetails = userDetailsRepository.findByUserMobileNumber(data);
@@ -44,15 +46,13 @@ public class SmsController {
                 otpVO.setEmailIdOrMobileNumber(data);
                 otpVO.setAccountRegistered(false);
                 return new ResponseEntity<>(otpVO, HttpStatus.OK);
+            }else {
+                return emailService.sendOtpOnNumber(data);
             }
         }
 //              You are not registered with us. Please sign up.
 
-            if (mobileOrEmail.equalsIgnoreCase("email"))
-                return emailService.sendOtpOnMail(data);
-            else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")) {
-                return emailService.sendOtpOnNumber(data);
-            }
+
             return null;
         }
 

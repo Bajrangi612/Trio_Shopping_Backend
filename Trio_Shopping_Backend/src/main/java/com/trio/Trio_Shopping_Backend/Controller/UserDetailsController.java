@@ -9,27 +9,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("v1/user")
 public class UserDetailsController {
     @Autowired
     UserDetailsService userDetailsService;
+
     @PostMapping("/createUser")
-    ResponseEntity<?> creteUser(@RequestBody UserDetails userDetails)
-    {
-        return null;
+    ResponseEntity<?> creteUser(@RequestBody UserDetails userDetails) {
+        return userDetailsService.createUser(userDetails);
     }
+
     @PutMapping("/updateUser")
-    ResponseEntity<?> updateUserDetails(@RequestBody UserDetails userDetails)
-    {
-      return userDetailsService.updateUserDetails(userDetails);
+    ResponseEntity<?> updateUserDetails(@RequestBody UserDetails userDetails) {
+        return userDetailsService.updateUserDetails(userDetails);
     }
+
     @GetMapping("/getUserDetails{id}")
-    Optional<UserDetails> getUserDetails(@PathVariable("id") long id){
+    Optional<UserDetails> getUserDetails(@PathVariable("id") long id) {
         return userDetailsService.getUserDetails(id);
     }
+
     @DeleteMapping("/deleteAccount")
-    ResponseEntity<?> deleteUserDetails(@RequestBody UserDetails userDetails)
-    {
+    ResponseEntity<?> deleteUserDetails(@RequestBody UserDetails userDetails) {
         return userDetailsService.deleteAccount(userDetails);
     }
 
