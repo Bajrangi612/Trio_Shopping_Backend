@@ -1,6 +1,7 @@
 package com.trio.Trio_Shopping_Backend.Controller;
 
 import com.trio.Trio_Shopping_Backend.domain.UserDetails;
+import com.trio.Trio_Shopping_Backend.repository.UserDetailsRepository;
 import com.trio.Trio_Shopping_Backend.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,21 @@ import java.util.Optional;
 public class UserDetailsController {
     @Autowired
     UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsRepository userDetailsRepository;
 
     @PostMapping("/createUser")
     ResponseEntity<?> creteUser(@RequestBody UserDetails userDetails) {
-        return userDetailsService.createUser(userDetails);
+        if(userDetails.getUserMobileNumber()!= null){
+            UserDetails account =   userDetailsRepository.findByUserMobileNumber(userDetails.getUserMobileNumber());
+            if(account==null)
+                 userDetailsService.createUser(userDetails);
+        } else if (userDetails.getUserEmail()!=null) {
+            UserDetails account = userDetailsRepository.findByUserEmail(userDetails.getUserEmail());
+            if(account==null);
+            userDetailsService.createUser(userDetails);
+        }
+        return null;
     }
 
     @PutMapping("/updateUser")
