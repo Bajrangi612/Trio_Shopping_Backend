@@ -28,33 +28,12 @@ public class SmsController {
     @PostMapping("/sendOTP/{mobileOrEmail}/{data}")
     public ResponseEntity<?> sendOTP(@PathVariable("mobileOrEmail") String mobileOrEmail, @PathVariable("data") String data) {
         if (mobileOrEmail.equalsIgnoreCase("email")) {
-            UserDetails userDetails = userDetailsRepository.findByUserEmail(data);
-            if (userDetails == null) {
-                OtpVO otpVO = new OtpVO();
-                otpVO.setOtpSend(false);
-                otpVO.setEmailIdOrMobileNumber(data);
-                otpVO.setAccountRegistered(false);
-                return new ResponseEntity<>(otpVO, HttpStatus.OK);
-            }else{
-                return emailService.sendOtpOnMail(data);
-            }
-        }else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")){
-            UserDetails userDetails = userDetailsRepository.findByUserMobileNumber(data);
-            if (userDetails == null) {
-                OtpVO otpVO = new OtpVO();
-                otpVO.setOtpSend(false);
-                otpVO.setEmailIdOrMobileNumber(data);
-                otpVO.setAccountRegistered(false);
-                return new ResponseEntity<>(otpVO, HttpStatus.OK);
-            }else {
-                return emailService.sendOtpOnNumber(data);
-            }
+            return emailService.sendOtpOnMail(data);
+        } else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")) {
+            return emailService.sendOtpOnNumber(data);
         }
-//              You are not registered with us. Please sign up.
-
-
-            return null;
-        }
+        return null;
+    }
 
 
 }
