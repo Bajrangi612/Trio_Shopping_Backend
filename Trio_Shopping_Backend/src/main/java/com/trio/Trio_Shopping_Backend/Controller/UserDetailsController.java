@@ -1,5 +1,6 @@
 package com.trio.Trio_Shopping_Backend.Controller;
 
+import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import com.trio.Trio_Shopping_Backend.domain.UserDetails;
 import com.trio.Trio_Shopping_Backend.repository.UserDetailsRepository;
 import com.trio.Trio_Shopping_Backend.service.UserDetailsService;
@@ -17,15 +18,19 @@ public class UserDetailsController {
     @Autowired
     private UserDetailsRepository userDetailsRepository;
 
-    @PostMapping("/createUser")
-    ResponseEntity<?> creteUser(@RequestBody UserDetails userDetails) {
-        if(userDetails.getUserMobileNumber()!= null){
-            UserDetails account =   userDetailsRepository.findByUserMobileNumber(userDetails.getUserMobileNumber());
-            if(account==null)
-                 userDetailsService.createUser(userDetails);
-        } else if (userDetails.getUserEmail()!=null) {
-            UserDetails account = userDetailsRepository.findByUserEmail(userDetails.getUserEmail());
+    @PostMapping("/createUser/{mobileOrEmail}/{data}")
+    ResponseEntity<?> creteUser(@PathVariable("mobileOrEmail") String mobileOrEmail, @PathVariable("data") String data) {
+        UserDetails userDetails = new UserDetails();
+        if(mobileOrEmail.equalsIgnoreCase("email")){
+            UserDetails account = userDetailsRepository.findByUserEmail(data);
+            if(account==null){
+                userDetails.setUserEmail(data);
+                userDetailsService.createUser(userDetails);
+            }
+        } else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")) {
+            UserDetails account = userDetailsRepository.findByUserMobileNumber(data);
             if(account==null);
+            userDetails.setUserMobileNumber(data);
             userDetailsService.createUser(userDetails);
         }
         return null;
