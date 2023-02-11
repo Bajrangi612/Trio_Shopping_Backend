@@ -31,7 +31,7 @@ public class UserDetailsController {
                 UserDetails  createdAccount =  userDetailsService.createUser(userDetails);
                 return new ResponseEntity<>(createdAccount, HttpStatus.OK);
             }else {
-                new ResponseEntity<>(account, HttpStatus.OK);
+               return new ResponseEntity<>(account, HttpStatus.OK);
             }
         } else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")) {
             UserDetails account = userDetailsRepository.findByUserMobileNumber(data);
