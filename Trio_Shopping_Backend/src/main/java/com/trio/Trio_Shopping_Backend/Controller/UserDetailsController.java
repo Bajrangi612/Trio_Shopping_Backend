@@ -3,8 +3,10 @@ package com.trio.Trio_Shopping_Backend.Controller;
 import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import com.trio.Trio_Shopping_Backend.domain.UserDetails;
 import com.trio.Trio_Shopping_Backend.repository.UserDetailsRepository;
+import com.trio.Trio_Shopping_Backend.responce.ResponseDomain;
 import com.trio.Trio_Shopping_Backend.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,16 +27,24 @@ public class UserDetailsController {
         if(mobileOrEmail.equalsIgnoreCase("email")){
             UserDetails account = userDetailsRepository.findByUserEmail(data);
             if(account==null){
-                userDetails.setUserEmail(data);
-                userDetailsService.createUser(userDetails);
+                 userDetails.setUserEmail(data);
+                UserDetails  createdAccount =  userDetailsService.createUser(userDetails);
+                return new ResponseEntity<>(createdAccount, HttpStatus.OK);
+            }else {
+                new ResponseEntity<>(account, HttpStatus.OK);
             }
         } else if (mobileOrEmail.equalsIgnoreCase("mobileNumber")) {
             UserDetails account = userDetailsRepository.findByUserMobileNumber(data);
-            if(account==null);
-            userDetails.setUserMobileNumber(data);
-            userDetailsService.createUser(userDetails);
+            if(account==null){
+                userDetails.setUserMobileNumber(data);
+              UserDetails createdAccount =   userDetailsService.createUser(userDetails);
+              return new ResponseEntity<>(createdAccount,HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>(account,HttpStatus.OK);
+            }
+
         }
-        return null;
+        return ResponseDomain.badRequest();
     }
 
     @PutMapping("/updateUser")

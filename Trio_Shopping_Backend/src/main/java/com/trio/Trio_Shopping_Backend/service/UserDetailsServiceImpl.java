@@ -15,12 +15,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDetailsRepository userDetailsRepository;
 
     @Override
-    public ResponseEntity<?> createUser(UserDetails userDetails) {
-        if (userDetails.getUserEmail() != null || userDetails.getUserMobileNumber() != null) {
-            userDetailsRepository.save(userDetails);
-            return ResponseDomain.successResponse("Account created successfully...");
-        } else return ResponseDomain.badRequest("Please give valid Email/Mobile number..");
-    }
+    public UserDetails createUser(UserDetails userDetails) {
+           return userDetailsRepository.save(userDetails);
+        }
+
+
 
     @Override
     public ResponseEntity<?> updateUserDetails(UserDetails userDetails) {

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 public interface UserDetailsService {
-    ResponseEntity<?> createUser(UserDetails userDetails);
+    UserDetails createUser(UserDetails userDetails);
     ResponseEntity<?> updateUserDetails(UserDetails userDetails);
     Optional<UserDetails> getUserDetails(long id);
     ResponseEntity<?> deleteAccount(UserDetails userDetails);
