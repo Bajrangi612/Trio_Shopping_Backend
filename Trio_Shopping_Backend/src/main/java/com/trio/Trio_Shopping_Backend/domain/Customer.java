@@ -10,16 +10,14 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class UserDetails implements Serializable {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String userFirstName;
-    private String userLastName;
-    private String userEmail;
-    private String userMobileNumber;
-    private String gender;
-    private String userPassword;
-
+    private String userName;
+    private String password;
+    private String email;
+    private String roles;
+    private String mobileNumber;
 
 }
