@@ -1,7 +1,8 @@
 package com.trio.Trio_Shopping_Backend.service;
 
-import com.javatechie.dto.Product;
+
 import com.trio.Trio_Shopping_Backend.domain.UserInfo;
+import com.trio.Trio_Shopping_Backend.dto.Product;
 import com.trio.Trio_Shopping_Backend.repository.UserInfoRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

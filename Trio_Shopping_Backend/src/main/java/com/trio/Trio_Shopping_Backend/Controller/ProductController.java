@@ -1,16 +1,14 @@
 package com.trio.Trio_Shopping_Backend.Controller;
 
-import com.javatechie.dto.AuthRequest;
-import com.javatechie.dto.Product;
+
 import com.trio.Trio_Shopping_Backend.domain.UserInfo;
+import com.trio.Trio_Shopping_Backend.dto.Product;
 import com.trio.Trio_Shopping_Backend.service.JwtService;
 import com.trio.Trio_Shopping_Backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

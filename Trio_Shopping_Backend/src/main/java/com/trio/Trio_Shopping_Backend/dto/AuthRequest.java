@@ -1,4 +1,4 @@
-package com.javatechie.dto;
+package com.trio.Trio_Shopping_Backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
