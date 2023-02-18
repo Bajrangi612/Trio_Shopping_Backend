@@ -2,6 +2,7 @@ package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.Customer;
 import com.trio.Trio_Shopping_Backend.domain.UserInfo;
+import com.trio.Trio_Shopping_Backend.domain.UserInfoVO;
 import com.trio.Trio_Shopping_Backend.repository.CustomerRepository;
 import com.trio.Trio_Shopping_Backend.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,19 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo getUserDetails(String mobileNumber) {
+    public UserInfoVO getUserDetails(String mobileNumber) {
        UserInfo userInfo =  userInfoRepository.findByMobileNumber(mobileNumber);
-       return userInfo;
+       if(userInfo!=null)
+       {
+           UserInfoVO userInfoVO = new UserInfoVO();
+           userInfoVO.setUserName(userInfo.getName());
+           userInfoVO.setGender(userInfo.getGender());
+           userInfoVO.setMobileNumber(userInfo.getMobileNumber());
+           userInfoVO.setEmailId(userInfo.getEmail());
+           userInfoVO.setId(userInfo.getId());
+           return userInfoVO;
+       }
+       return null;
     }
 
     @Override

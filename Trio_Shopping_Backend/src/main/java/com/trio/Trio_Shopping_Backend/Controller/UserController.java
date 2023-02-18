@@ -2,6 +2,7 @@ package com.trio.Trio_Shopping_Backend.Controller;
 
 import com.trio.Trio_Shopping_Backend.domain.AuthRequest;
 import com.trio.Trio_Shopping_Backend.domain.UserInfo;
+import com.trio.Trio_Shopping_Backend.domain.UserInfoVO;
 import com.trio.Trio_Shopping_Backend.dto.AccessTokenVO;
 import com.trio.Trio_Shopping_Backend.repository.UserInfoRepository;
 import com.trio.Trio_Shopping_Backend.service.JwtService;
@@ -58,9 +59,9 @@ public class UserController {
 
     }
 
-    @GetMapping("/getUserByMobileNumber/{mobileNumber}")
-    public UserInfo getUserByMobileNumber(@PathVariable("mobileNumber") String mobileNumber) {
-        return userInfoService.getUserDetails(mobileNumber);
+    @GetMapping("/getUserByMobileNumber")
+    public UserInfoVO getUserByMobileNumber(Authentication authentication) {
+        return userInfoService.getUserDetails(authentication.getName());
     }
 
 }
