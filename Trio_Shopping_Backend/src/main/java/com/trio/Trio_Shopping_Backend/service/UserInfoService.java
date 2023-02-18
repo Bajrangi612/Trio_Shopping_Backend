@@ -1,14 +1,11 @@
 package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.Customer;
-import com.trio.Trio_Shopping_Backend.domain.UserInfo;
-import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
-public interface CustomerService {
+public interface UserInfoService {
     Customer createUser(Customer customer);
     ResponseEntity<?> updateUserDetails(Customer customer);
     Optional<Customer> getUserDetails(long id);

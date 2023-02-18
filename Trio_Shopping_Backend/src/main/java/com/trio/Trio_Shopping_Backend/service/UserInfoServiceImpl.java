@@ -1,18 +1,16 @@
 package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.Customer;
-import com.trio.Trio_Shopping_Backend.domain.UserInfo;
 import com.trio.Trio_Shopping_Backend.repository.CustomerRepository;
 import com.trio.Trio_Shopping_Backend.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private CustomerRepository customerRepository;
 
