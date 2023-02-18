@@ -1,13 +1,12 @@
 package com.trio.Trio_Shopping_Backend.service;
 
 import com.trio.Trio_Shopping_Backend.domain.Customer;
+import com.trio.Trio_Shopping_Backend.domain.UserInfo;
 import com.trio.Trio_Shopping_Backend.repository.CustomerRepository;
 import com.trio.Trio_Shopping_Backend.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -28,8 +27,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public Optional<Customer> getUserDetails(long id) {
-        return Optional.empty();
+    public UserInfo getUserDetails(String mobileNumber) {
+       UserInfo userInfo =  userInfoRepository.findByMobileNumber(mobileNumber);
+       return userInfo;
     }
 
     @Override
