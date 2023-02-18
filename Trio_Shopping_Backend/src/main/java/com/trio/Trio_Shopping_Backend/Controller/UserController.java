@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private ProductService service;
