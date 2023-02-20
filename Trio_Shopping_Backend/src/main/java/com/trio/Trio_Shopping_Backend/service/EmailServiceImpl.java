@@ -1,9 +1,12 @@
 package com.trio.Trio_Shopping_Backend.service;
 
+import com.trio.Trio_Shopping_Backend.Controller.SmsController;
 import com.trio.Trio_Shopping_Backend.domain.EmailDetails;
 
 import com.trio.Trio_Shopping_Backend.domain.OtpVO;
 import com.trio.Trio_Shopping_Backend.responce.ResponseDomain;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +28,7 @@ import java.util.Random;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+    private  static  final Logger log = LogManager.getLogger(EmailServiceImpl.class);
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -69,6 +73,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public ResponseEntity<?> sendOtpOnNumber(String mobileNumber) {
+        log.info("Entering  Controller ::: EmailServiceImpl ::: sendOtpOnNumber");
         OtpVO otpVO = new OtpVO();
         StringBuffer response = null;
         try {
@@ -115,7 +120,7 @@ public class EmailServiceImpl implements EmailService {
         }
 
 
-
+        log.info("Exiting  Controller ::: EmailServiceImpl ::: sendOtpOnNumber");
         return  new ResponseEntity<>(otpVO, HttpStatus.OK);
     }
 //    @Override
